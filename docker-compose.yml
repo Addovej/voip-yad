@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  postgresql:
+    container_name: voip_yad_postgres
+    image: postgres:11-alpine
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    container_name: voip_yad_app
+    working_dir: /
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app
+    depends_on:
+      - postgresql
+    ports:
+      - '5000:5000'
+
+volumes:
+  pgdata:
