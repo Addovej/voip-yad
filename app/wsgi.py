@@ -7,6 +7,10 @@ app = create_app()
 
 @models_committed.connect_via(app)
 def on_models_committed(sender, changes):
+    """
+    Database signals handler.
+    """
+
     for obj, change in changes:
         if change == 'insert' and hasattr(obj, '__commit_insert__'):
             obj.__commit_insert__()

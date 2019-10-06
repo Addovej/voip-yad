@@ -2,6 +2,12 @@ blinker==1.4
 flake8==3.7.8
 flasgger==0.9.3
 flask==1.1.1
+flask_admin==1.5.3
+flask_login==0.4.1
 flask_migrate==2.5.2
+flask-security==3.0.0
 flask_sqlalchemy==2.4.1
+gunicorn==19.9.0
 marshmallow==3.2.1
+psycopg2==2.8.3
+yadisk==1.2.14

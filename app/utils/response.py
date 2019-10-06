@@ -4,6 +4,15 @@ from flask import Response
 
 
 def response(content: any, status: int, headers: dict = None) -> Response:
+    """
+        Response wrapper.
+
+        :param content: content of response
+        :param status: `int`, status code
+        :param headers: `dict`, response headers
+        :return: :any:`Response`
+    """
+
     if not headers:
         headers = [('Content-Type', 'application/json')]
 

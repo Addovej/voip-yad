@@ -9,7 +9,9 @@ migrate = Migrate()
 
 
 def create_app():
-    """Construct the core application."""
+    """
+    Construct the core application.
+    """
 
     flask_app = Flask(__name__)
     flask_app.config.from_object(Config)
@@ -17,6 +19,8 @@ def create_app():
     migrate.init_app(flask_app, db)
 
     with flask_app.app_context():
+        from . import admin
+        from . import commands
         from . import docs
         from . import routes
 
