@@ -1,28 +1,10 @@
 # VOIP API Integration simulation
 
-## Requirements
-Python 3.7+
-
 ## Installation
 ```bash
-
+git clone git@github.com:Addovej/voip-yad.git
+cd voip-yad
 ```
-
-### Configuration
-
-Go to https://oauth.yandex.ru/ for registration a new OAuth app.
-
-Then go to https://oauth.yandex.ru/authorize?response_type=token&display=popup&force_confirm=yes&client_id=<client-id>
-
-Configure .env:
-
-YA_DISK_APP_ID=YA_DISK_APP_ID
-YA_DISK_APP_SECRET=YA_DISK_APP_SECRET
-YA_DISC_TOKEN=YA_DISC_TOKEN
-
-Token will be valid in next year.
-
-
 To build:
 ```bash
 docker-compose build
@@ -33,6 +15,35 @@ docker-compose run app flask db upgrade
 ```
 to create a superuser:
 ```bash
-docker-compose run app flask createsuperuser exampl@email.com
+docker-compose run app flask create-superuser exampl@email.com
+```
+to launch
+```bash
+docker-compose up -d
 ```
 
+### Not docker installation
+```bash
+python3 -m virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+flask run
+```
+
+### Configuration
+
+Go to https://oauth.yandex.ru/ for registration a new OAuth app.
+
+Then go to https://oauth.yandex.ru/authorize?response_type=token&display=popup&force_confirm=yes&client_id=<client-id>
+
+Configure .env:
+
+YA_DISK_APP_ID=<your-app-id>
+YA_DISK_APP_SECRET=<your-app-secret>
+
+
+## Requirements
+Python 3.6+
+
+## Keywords
+Flask, API, Yandex.Disk, sqlalchemy, postgresql, flassger

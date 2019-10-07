@@ -1,6 +1,7 @@
 from enum import Enum
 
 from flask_security import UserMixin, RoleMixin
+from flask_security.utils import hash_password, verify_password
 
 from app import db
 
@@ -112,3 +113,15 @@ class User(BaseModel, UserMixin):
 
     def __str__(self):
         return self.email
+
+    @staticmethod
+    def generate_hash(password):
+        return hash_password(password)
+
+    @staticmethod
+    def verify_hash(password, _hash):
+        return verify_password(password, _hash)
+
+    @classmethod
+    def get_by_email(cls, email):
+        return cls.query.filter_by(email=email).first()

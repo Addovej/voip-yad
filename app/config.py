@@ -9,15 +9,16 @@ _port = os.environ.get('POSTGRES_PORT')
 
 class Config(object):
     """
-    Main application config.
+        Main application config.
     """
 
     FLASK_ADMIN_SWATCH = 'cerulean'
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'secret')
 
     SECURITY_PASSWORD_HASH = 'pbkdf2_sha512'
-    SECURITY_PASSWORD_SALT = 'ATGUOHAELKiubahiughaerGOJAEGj'
+    SECURITY_PASSWORD_SALT = '$BJxja&6kj(ksan{-s&2$#bjnHKSwx)o'
     SECURITY_URL_PREFIX = '/admin'
 
     SECURITY_LOGIN_URL = '/login/'
@@ -41,25 +42,11 @@ class Config(object):
                 'route': '/v1/spec',
             }
         ],
-        'components': {
-            'securitySchemes': {
-                'ApiKeyAuth': {
-                    'type': 'apiKey',
-                    'in': 'header',
-                    'name': 'Token'
-                },
-                'apiKey': {
-                    'type': 'apiKey',
-                    'in': 'header',
-                    'name': 'Token'
-                }
-            }
-        },
         'securityDefinitions': {
-            'apiKey': {
+            'Bearer': {
                 'type': 'apiKey',
                 'in': 'header',
-                'name': 'Token'
+                'name': 'Authorization'
             }
         }
     }

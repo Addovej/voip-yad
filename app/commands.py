@@ -2,7 +2,6 @@ import click
 from getpass import getpass
 
 from flask import current_app as app
-from flask_security.utils import hash_password
 
 from . import database
 from .models import (
@@ -10,7 +9,7 @@ from .models import (
 )
 
 
-@app.cli.command('createsuperuser')
+@app.cli.command('create-superuser')
 @click.argument('email')
 def create_user(email: str):
     """
@@ -18,7 +17,7 @@ def create_user(email: str):
         :param email:
     """
 
-    if User.query.filter_by(email=email).first():
+    if User.get_by_email(email):
         return print('User with you specified email already exists')
 
     password = getpass('Enter password: ')
@@ -30,8 +29,33 @@ def create_user(email: str):
     user = database.add_instance(
         User,
         email=email,
-        password=hash_password(password),
+        password=User.generate_hash(password),
         active=True,
         roles=[role]
     )
     print(f'User {user.email} was created')
+
+
+@app.cli.command('change-password')
+@click.argument('email')
+def create_user(email: str):
+    """
+        Change user's password
+        :param email:
+    """
+
+    user = User.get_by_email(email)
+    if not user:
+        return print(f"User {email} doesn't exist")
+
+    password = getpass('Enter password: ')
+    re_password = getpass('re-Enter password: ')
+    if password != re_password:
+        return print('Passwords does not match')
+
+    database.edit_instance(
+        User,
+        user.id,
+        password=User.generate_hash(password)
+    )
+    print(f'Password for {user.email} was changed')
