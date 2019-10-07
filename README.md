@@ -38,12 +38,12 @@ flask run
 
 Go to https://oauth.yandex.ru/ for registration a new OAuth app.
 
-Then go to https://oauth.yandex.ru/authorize?response_type=token&display=popup&force_confirm=yes&client_id=<client-id>
+Then go to https://oauth.yandex.ru/authorize?response_type=token&display=popup&force_confirm=yes&client_id=client-id
 
 Configure .env:
 
-YA_DISK_APP_ID=<your-app-id>
-YA_DISK_APP_SECRET=<your-app-secret>
+YA_DISK_APP_ID=your-app-id
+YA_DISK_APP_SECRET=your-app-secret
 
 
 ## Requirements
