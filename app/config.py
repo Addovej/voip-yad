@@ -61,4 +61,10 @@ class Config(object):
 
     YA_DISK_APP_ID = os.environ.get('YA_DISK_APP_ID')
     YA_DISK_APP_SECRET = os.environ.get('YA_DISK_APP_SECRET')
-    YA_DISC_BASE_FOLDER = os.environ.get('YA_DISC_BASE_FOLDER')
+    YA_DISK_BASE_FOLDER = os.environ.get('YA_DISK_BASE_FOLDER')
+    YA_DISK_GET_TOKEN_URL = \
+        'https://oauth.yandex.ru/authorize' \
+        '?response_type=token&client_id={}' \
+        '&display=popup&force_confirm=yes'.format(
+            YA_DISK_APP_ID
+        )

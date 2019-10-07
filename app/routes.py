@@ -8,6 +8,7 @@ from flask_jwt_extended.utils import (
 from flask_restful import Api
 from flasgger import SwaggerView
 
+from app.config import Config
 from app.database import (add_instance, edit_instance)
 from app.models import User
 from app.schemes import (
@@ -16,7 +17,7 @@ from app.schemes import (
     UpdateUserSchema,
     LoginUserSchema
 )
-from app.utils import response, YandexDisc
+from app.utils import response, YandexDisk
 
 api = Api(app)
 
@@ -249,10 +250,12 @@ class CallsView(BaseView):
 
         if not user.ya_disc_token:
             return response(
-                'Please specify Yandex.Disk token in your profile', 400
+                'To get access token go to link {}'.format(
+                    Config.YA_DISK_GET_TOKEN_URL
+                ), 400
             )
 
-        yad = YandexDisc(user.ya_disc_token)
+        yad = YandexDisk(user.ya_disc_token)
         if not yad.check_token():
             return response(
                 'Token specified you not valid', 400
