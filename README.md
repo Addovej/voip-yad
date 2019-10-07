@@ -13,13 +13,17 @@ To apply migrations:
 ```bash
 docker-compose run app flask db upgrade
 ```
-to create a superuser:
+To create a superuser:
 ```bash
 docker-compose run app flask create-superuser exampl@email.com
 ```
-to launch
+To launch
 ```bash
 docker-compose up -d
+```
+To test code style
+```bash
+docker-compose run app flake8 app/
 ```
 
 ### Not docker installation

@@ -22,7 +22,8 @@ class BaseModelView(ModelView):
 
     def _handle_view(self, name, **kwargs):
         """
-            Override builtin _handle_view in order to redirect users when a view is not accessible.
+            Override builtin _handle_view in order
+            to redirect users when a view is not accessible.
         """
 
         if not self.is_accessible():

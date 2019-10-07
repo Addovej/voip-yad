@@ -38,7 +38,7 @@ def create_user(email: str):
 
 @app.cli.command('change-password')
 @click.argument('email')
-def create_user(email: str):
+def change_password(email: str):
     """
         Change user's password
         :param email:
